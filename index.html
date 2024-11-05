@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✧ AquaAura Jewels ✧</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c0446;
+            --accent: #9f2bc1;
+            --light: #f0e6ff;
+            --gold: #ffd700;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #0c0118, #2c0446);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: 
+                radial-gradient(1px 1px at 20px 30px, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 80px, white, rgba(0,0,0,0));
+            background-repeat: repeat;
+            animation: twinkle 8s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        header {
+            position: relative;
+            text-align: center;
+            padding: 4rem 1rem;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s infinite;
+            position: relative;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--light);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            perspective: 1000px;
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            color: white;
+            cursor: pointer;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--gold);
+        }
+
+        .product-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(159, 43, 193, 0.3), rgba(44, 4, 70, 0.3));
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .product-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            color: white;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-price::before {
+            content: '✧';
+            color: var(--gold);
+        }
+
+        .product-description {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            border: none;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .buy-btn:hover::before {
+            left: 100%;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .category-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 80%;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <header>
+        <h1 class="logo">✧ AquaAura Jewels ✧</h1>
+        <p class="tagline">Adorn Your Soul with Celestial Beauty</p>
+    </header>
+
+    <nav class="category-nav">
+        <a href="zodiac-rings.html" class="category-btn">✧ Zodiac Rings</a>
+        <!-- <a href="car-amulets.html" class="category-btn">✧ Car Amulets</a> -->
+        <a href="crystal-collection.html" class="category-btn">✧ Crystal Collection</a>
+    </nav>
+
+    <main class="products-grid">
+        <div class="product-card">
+            <div class="product-image">
+                <img src="images\aries.jpg" alt="Aries Power Ring">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Aries Power Ring</h3>
+                <p class="product-price">Rs. 800</p>
+                <p class="product-description">Channel the fierce energy of Aries with this bold ring featuring genuine red garnet and celestial engravings.</p>
+                <button class="buy-btn">Add to Collection</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="images\Aquarius.jpg" alt="Aquarius Innovation Ring">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Aquarius Innovation Ring</h3>
+                <p class="product-price">$99.99</p>
+                <p class="product-description">Embrace the progressive, innovative energy of Aquarius with this ring featuring a unique iolite stone and sterling silver accents.</p>
+                <button class="buy-btn">Add to Collection</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="images\crystalr.jpg" alt="Moonstone Dreams Ring">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Moonstone Dreams Ring</h3>
+                <p class="product-price">Rs. 550</p>
+                <p class="product-description">Embrace the mystical energy of rainbow moonstone in this ethereal design that changes with every movement.</p>
+                <button class="buy-btn">Add to Collection</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Our Story</h3>
+                <p>Each piece is crafted with intention, combining ancient wisdom with modern design to create jewelry that resonates with your spirit.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>Email: enchant@aquaaurajewels.com</p>
+                <p>Crystal Hotline: +91 7710870921 CRYSTALS</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow the Magic</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
